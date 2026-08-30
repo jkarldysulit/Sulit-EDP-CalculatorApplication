@@ -26,12 +26,12 @@ namespace CalculatorApplication
 
         public double Calculate(double arg1, double arg2)
         {
-            return _calculateHandler?.Invoke(arg1, arg2) ?? 0.0;
+            return _calculateHandler?.Invoke(arg1, arg2) ?? 0.0; //if null return 0.0
         }
 
-        public double GetSum(double arg1, double arg2) => arg1 + arg2;
-        public double GetDifference(double arg1, double arg2) => arg1 - arg2;
-        public double GetProduct(double arg1, double arg2) => arg1 * arg2;
-        public double GetQuotient(double arg1, double arg2) => arg1 / arg2;
+        public double GetSum(double arg1, double arg2) => arg1 + arg2;//add
+        public double GetDifference(double arg1, double arg2) => arg1 - arg2;//subtract
+        public double GetProduct(double arg1, double arg2) => arg1 * arg2;//multiply
+        public double GetQuotient(double arg1, double arg2) => arg1 / arg2;//divide
     }
 }

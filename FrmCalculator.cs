@@ -10,23 +10,23 @@ namespace CalculatorApplication
 {
     public partial class FrmCalculator : Form
     {
-        private CalculatorClass cal;
-        private Formula<double>? activeHandler;
-        private double num1, num2;
+        private CalculatorClass cal; 
+        private Formula<double>? activeHandler; 
+        private double num1, num2; 
 
         public FrmCalculator()
         {
             InitializeComponent();
-         
-            List<string> operators = new List<string> { "+", "-", "*", "/" };
-            cbOperator.Items.AddRange(operators.ToArray());
 
-            cbOperator.SelectedIndex = 0;
-            cal = new CalculatorClass();
+            List<string> operators = new List<string> { "+", "-", "*", "/" };
+            cbOperator.Items.AddRange(operators.ToArray()); //convert List to Array
+
+            cbOperator.SelectedIndex = 0; 
+            cal = new CalculatorClass(); 
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
-        {
+        {  //input validations
             if (string.IsNullOrWhiteSpace(txtBoxInput1.Text) || string.IsNullOrWhiteSpace(txtBoxInput2.Text))
             {
                 MessageBox.Show("Please fill in both fields.", "Missing Input",
@@ -56,7 +56,7 @@ namespace CalculatorApplication
             }
 
             if (activeHandler != null)
-                cal.CalculateEvent -= activeHandler;
+                cal.CalculateEvent -= activeHandler; 
 
             switch (cbOperator.Text)
             {
@@ -76,7 +76,7 @@ namespace CalculatorApplication
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    activeHandler = cal.GetQuotient;
+                    activeHandler = cal.GetQuotient; 
                     break;
                 default:
                     MessageBox.Show("Please select a valid operator.", "Input Error",
@@ -84,16 +84,14 @@ namespace CalculatorApplication
                     return;
             }
 
-            cal.CalculateEvent += activeHandler;
+            cal.CalculateEvent += activeHandler; 
 
+            double total = cal.Calculate(num1, num2); //total computation
 
-            double total = cal.Calculate(num1, num2);
+            bool hasDecimal = txtBoxInput1.Text.Contains(".") || txtBoxInput2.Text.Contains("."); //checking if input have decimal
 
-            bool hasDecimal = txtBoxInput1.Text.Contains(".") || txtBoxInput2.Text.Contains(".");
-
-            string result = hasDecimal ? total.ToString("F3") : total.ToString("0");
-
-            lblDisplayTotal.Text = result;
+            string result = hasDecimal ? total.ToString("F3") : total.ToString("0"); //Ternary Operator,  if input has decimal then answer has decimal limit to 3 decimal else 0 decimal
+            lblDisplayTotal.Text = result; //display total
         }
     }
 }
