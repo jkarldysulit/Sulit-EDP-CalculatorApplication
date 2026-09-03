@@ -8,25 +8,25 @@ namespace CalculatorApplication
 
     internal class CalculatorClass
     {
-        private Formula<double>? _calculateHandler;
+        private Formula<double>? calculateHandler;
 
         public event Formula<double> CalculateEvent
         {
             add
             {
-                _calculateHandler += value;
+                calculateHandler += value;
                 Console.WriteLine("Added the Delegate");
             }
             remove
             {
-                _calculateHandler -= value;
+                calculateHandler -= value;
                 Console.WriteLine("Removed the Delegate");
             }
         }
 
         public double Calculate(double arg1, double arg2)
         {
-            return _calculateHandler?.Invoke(arg1, arg2) ?? 0.0; //if null return 0.0
+            return calculateHandler?.Invoke(arg1, arg2) ?? 0.0; //if null return 0.0
         }
 
         public double GetSum(double arg1, double arg2) => arg1 + arg2;//add
