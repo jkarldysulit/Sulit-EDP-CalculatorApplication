@@ -34,28 +34,28 @@ namespace CalculatorApplication
                 return;
             }
 
-            if (cbOperator.SelectedIndex == -1)
+            else if (cbOperator.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select an operator.", "Missing Input",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!double.TryParse(txtBoxInput1.Text, out num1))
+            else if (!double.TryParse(txtBoxInput1.Text, out num1))
             {
                 MessageBox.Show("Please enter a numeric value.", "Input Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!double.TryParse(txtBoxInput2.Text, out num2))
+            else if (!double.TryParse(txtBoxInput2.Text, out num2))
             {
                 MessageBox.Show("Please enter a numeric value.", "Input Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (activeHandler != null)
+            else if (activeHandler != null)
                 cal.CalculateEvent -= activeHandler; 
 
             switch (cbOperator.Text)
@@ -90,7 +90,7 @@ namespace CalculatorApplication
 
             bool hasDecimal = txtBoxInput1.Text.Contains(".") || txtBoxInput2.Text.Contains("."); //checking if input have decimal
 
-            string result = hasDecimal ? total.ToString("F3") : total.ToString("0"); //Ternary Operator,  if input has decimal then answer has decimal limit to 3 decimal else 0 decimal
+            string result = hasDecimal ? total.ToString("F3") : total.ToString("0"); //Ternary Operator,  if input has decimal then answer has decimal limit to 3 decimal or else 0 decimal
             lblDisplayTotal.Text = result; //display total
         }
     }
